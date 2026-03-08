@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>⚠️ SYSTEM ALERT ⚠️</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Audio untuk efek suara -->
+    <audio id="alert-sound" loop>
+        <source src="alert.mp3" type="audio/mpeg">
+    </audio>
+    
+    <div class="container">
+        <!-- Main Hack Screen -->
+        <div class="hack-screen" id="main-screen">
+            <!-- Header dengan efek glitch -->
+            <div class="header">
+                <h1 class="glitch" data-text="⚠️ SYSTEM BREACH DETECTED ⚠️">⚠️ SYSTEM BREACH DETECTED ⚠️</h1>
+                <div class="scan-line"></div>
+            </div>
+            
+            <!-- Pesan utama -->
+            <div class="message-box">
+                <div class="warning-icon">
+                    <i class="fas fa-skull-crossbones"></i>
+                </div>
+                <h2 class="hack-message">
+                    Your device has been <span class="hacked-text">HACKED</span> by 
+                    <span class="hacker-name">bl3ssing</span>
+                </h2>
+                <p class="sub-message">All personal data is now encrypted</p>
+            </div>
+            
+            <!-- Kontak informasi -->
+            <div class="contact-section">
+                <div class="contact-header">
+                    <i class="fas fa-phone-alt"></i>
+                    <h3>CONTACT FOR DECRYPTION</h3>
+                </div>
+                <div class="contact-info">
+                    <div class="phone-number">
+                        <i class="fas fa-phone"></i>
+                        <p>+62 812-3456-7890</p>
+                    </div>
+                    <p class="contact-note">Call immediately for decryption key</p>
+                </div>
+            </div>
+            
+            <!-- File terenkripsi info -->
+            <div class="file-section">
+                <div class="file-header">
+                    <i class="fas fa-file-lock"></i>
+                    <h3>ENCRYPTED FILES DETECTED</h3>
+                </div>
+                <div class="file-list">
+                    <p><i class="fas fa-lock"></i> Photos.zip - ENCRYPTED</p>
+                    <p><i class="fas fa-lock"></i> Documents.zip - ENCRYPTED</p>
+                    <p><i class="fas fa-lock"></i> Contacts.vcf - ENCRYPTED</p>
+                </div>
+                <p class="file-warning">Files cannot be opened without decryption key</p>
+            </div>
+            
+            <!-- Input kode dekripsi -->
+            <div class="decryption-section">
+                <div class="decryption-header">
+                    <i class="fas fa-key"></i>
+                    <h3>ENTER DECRYPTION CODE</h3>
+                </div>
+                <div class="input-group">
+                    <input type="text" 
+                           id="decryption-code" 
+                           class="code-input" 
+                           placeholder="Enter decryption code..."
+                           autocomplete="off"
+                           spellcheck="false">
+                    <button id="submit-code" class="submit-btn">
+                        <i class="fas fa-unlock"></i> DECRYPT NOW
+                    </button>
+                </div>
+                <p class="code-hint">Code: <span class="hint">BlessingPro</span> (case-sensitive)</p>
+            </div>
+            
+            <!-- Countdown timer -->
+            <div class="countdown-section">
+                <div class="timer-display">
+                    <i class="fas fa-clock"></i>
+                    <div class="timer">
+                        <span class="time-label">TIME REMAINING:</span>
+                        <span id="timer" class="time">60</span>
+                        <span class="time-unit">SECONDS</span>
+                    </div>
+                </div>
+                <p class="timer-warning">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    All data will be permanently deleted when timer reaches zero
+                </p>
+            </div>
+            
+            <!-- Terminal output -->
+            <div class="terminal">
+                <div class="terminal-header">
+                    <i class="fas fa-terminal"></i>
+                    SYSTEM LOG
+                </div>
+                <div class="terminal-content" id="terminal-output">
+                    <p>> Initializing system breach...</p>
+                    <p>> Device: MOBILE DETECTED</p>
+                    <p>> Data encryption: 100% COMPLETE</p>
+                    <p>> Network: MONITORING ACTIVATED</p>
+                    <p>> Files: ENCRYPTION SUCCESSFUL</p>
+                    <p>> Backup: DISABLED</p>
+                    <p>> Waiting for decryption code...</p>
+                </div>
+            </div>
+            
+            <!-- Footer -->
+            <div class="footer">
+                <p class="footer-text">
+                    <i class="fas fa-shield-alt"></i>
+                    bl3ssing Security Systems © 2024
+                </p>
+            </div>
+        </div>
+        
+        <!-- Restored Screen (hidden) -->
+        <div class="restored-screen" id="restored-screen" style="display: none;">
+            <div class="restored-content">
+                <div class="success-icon">
+                    <i class="fas fa-check-circle"></i>
+                </div>
+                <h1 class="success-title">SYSTEM RESTORED</h1>
+                <p class="success-message">Your device is now safe</p>
+                <p class="success-sub">All files have been decrypted</p>
+                <div class="closing-message">
+                    <p>Application will close automatically...</p>
+                    <div class="closing-timer">
+                        Closing in <span id="close-timer">5</span> seconds
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Scripts -->
+    <script src="script.js"></script>
+    <script src="encryption.js"></script>
+    <script src="effects.js"></script>
+</body>
+</html>

@@ -1,0 +1,564 @@
+/* Reset dan Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Courier New', monospace;
+    background: #000;
+    color: #00ff00;
+    overflow-x: hidden;
+    min-height: 100vh;
+    transition: all 0.3s ease;
+}
+
+/* Container utama */
+.container {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: 
+        radial-gradient(circle at 20% 50%, rgba(255, 0, 0, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(0, 255, 0, 0.1) 0%, transparent 50%),
+        linear-gradient(135deg, #000 0%, #111 50%, #000 100%);
+    padding: 20px;
+    position: relative;
+}
+
+/* Scan line effect */
+.scan-line {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(to right, transparent, #00ff00, transparent);
+    animation: scan 3s linear infinite;
+    z-index: 1000;
+}
+
+@keyframes scan {
+    0% { top: 0; opacity: 0.5; }
+    50% { opacity: 1; }
+    100% { top: 100%; opacity: 0.5; }
+}
+
+/* Hack Screen */
+.hack-screen {
+    background: rgba(0, 0, 0, 0.9);
+    border: 2px solid #00ff00;
+    border-radius: 10px;
+    padding: 30px;
+    width: 100%;
+    max-width: 800px;
+    box-shadow: 
+        0 0 50px rgba(0, 255, 0, 0.3),
+        inset 0 0 20px rgba(0, 255, 0, 0.1);
+    position: relative;
+    overflow: hidden;
+}
+
+.hack-screen::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #ff0000, #00ff00, #0000ff);
+    animation: border-glow 2s linear infinite;
+}
+
+@keyframes border-glow {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 100% 50%; }
+}
+
+/* Header dengan efek glitch */
+.header {
+    text-align: center;
+    margin-bottom: 30px;
+    position: relative;
+}
+
+.glitch {
+    font-size: 2.2rem;
+    color: #00ff00;
+    position: relative;
+    display: inline-block;
+    text-shadow: 
+        0.05em 0 0 #ff0000,
+        -0.025em -0.05em 0 #0000ff;
+    animation: glitch 500ms infinite;
+}
+
+.glitch::before,
+.glitch::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.glitch::before {
+    animation: glitch-top 1s infinite;
+    clip-path: polygon(0 0, 100% 0, 100% 33%, 0 33%);
+    -webkit-clip-path: polygon(0 0, 100% 0, 100% 33%, 0 33%);
+}
+
+.glitch::after {
+    animation: glitch-bottom 1.5s infinite;
+    clip-path: polygon(0 67%, 100% 67%, 100% 100%, 0 100%);
+    -webkit-clip-path: polygon(0 67%, 100% 67%, 100% 100%, 0 100%);
+}
+
+@keyframes glitch {
+    0% { transform: translate(0); }
+    20% { transform: translate(-2px, 1px); }
+    40% { transform: translate(-1px, -1px); }
+    60% { transform: translate(1px, 2px); }
+    80% { transform: translate(1px, -1px); }
+    100% { transform: translate(0); }
+}
+
+@keyframes glitch-top {
+    0%, 100% { transform: translate(0); opacity: 1; }
+    50% { transform: translate(-1px, -0.5px); opacity: 0.8; }
+}
+
+@keyframes glitch-bottom {
+    0%, 100% { transform: translate(0); opacity: 1; }
+    50% { transform: translate(1px, 0.5px); opacity: 0.8; }
+}
+
+/* Message Box */
+.message-box {
+    background: rgba(255, 0, 0, 0.1);
+    border: 1px solid #ff0000;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 25px;
+    text-align: center;
+    animation: pulse-red 2s infinite;
+}
+
+@keyframes pulse-red {
+    0%, 100% { border-color: #ff0000; }
+    50% { border-color: #ff4444; }
+}
+
+.warning-icon {
+    font-size: 3rem;
+    color: #ff0000;
+    margin-bottom: 15px;
+    animation: spin 5s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.hack-message {
+    font-size: 1.8rem;
+    color: #ffffff;
+    margin-bottom: 10px;
+}
+
+.hacked-text {
+    color: #ff0000;
+    font-weight: bold;
+    text-transform: uppercase;
+    animation: blink 1s infinite;
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+}
+
+.hacker-name {
+    color: #00ff00;
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+.sub-message {
+    color: #ff6666;
+    font-size: 1.1rem;
+    margin-top: 10px;
+}
+
+/* Contact Section */
+.contact-section,
+.file-section,
+.decryption-section,
+.countdown-section {
+    background: rgba(0, 20, 0, 0.7);
+    border: 1px solid #00ff00;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+    transition: all 0.3s ease;
+}
+
+.contact-section:hover,
+.file-section:hover,
+.decryption-section:hover,
+.countdown-section:hover {
+    box-shadow: 0 0 20px rgba(0, 255, 0, 0.3);
+    transform: translateY(-2px);
+}
+
+.contact-header,
+.file-header,
+.decryption-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 15px;
+    color: #00ff00;
+    font-size: 1.2rem;
+}
+
+.contact-info {
+    text-align: center;
+}
+
+.phone-number {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    font-size: 1.5rem;
+    color: #ffffff;
+    margin: 15px 0;
+    padding: 10px;
+    background: rgba(0, 255, 0, 0.1);
+    border-radius: 5px;
+}
+
+.contact-note {
+    color: #ff9900;
+    font-size: 0.9rem;
+    margin-top: 10px;
+}
+
+/* File Section */
+.file-list {
+    margin: 15px 0;
+    padding-left: 20px;
+}
+
+.file-list p {
+    margin: 8px 0;
+    color: #ff6666;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.file-warning {
+    color: #ff9900;
+    font-size: 0.9rem;
+    text-align: center;
+    margin-top: 15px;
+}
+
+/* Decryption Section */
+.input-group {
+    display: flex;
+    gap: 10px;
+    margin: 20px 0;
+}
+
+.code-input {
+    flex: 1;
+    padding: 15px;
+    background: rgba(0, 0, 0, 0.7);
+    border: 2px solid #00ff00;
+    border-radius: 5px;
+    color: #ffffff;
+    font-size: 1.1rem;
+    font-family: 'Courier New', monospace;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+.code-input:focus {
+    border-color: #ff0000;
+    box-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
+}
+
+.submit-btn {
+    padding: 15px 25px;
+    background: linear-gradient(45deg, #ff0000, #990000);
+    border: none;
+    border-radius: 5px;
+    color: white;
+    font-weight: bold;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.submit-btn:hover {
+    background: linear-gradient(45deg, #ff3333, #cc0000);
+    transform: scale(1.05);
+    box-shadow: 0 0 20px rgba(255, 0, 0, 0.5);
+}
+
+.code-hint {
+    text-align: center;
+    color: #888;
+    margin-top: 10px;
+}
+
+.code-hint .hint {
+    color: #00ff00;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+/* Countdown Section */
+.timer-display {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.timer {
+    display: flex;
+    align-items: baseline;
+    gap: 5px;
+}
+
+.time-label {
+    color: #ffffff;
+    font-size: 1.1rem;
+}
+
+.time {
+    font-size: 3rem;
+    font-weight: bold;
+    color: #ff0000;
+    animation: pulse-timer 1s infinite;
+}
+
+@keyframes pulse-timer {
+    0%, 100% { text-shadow: 0 0 10px #ff0000; }
+    50% { text-shadow: 0 0 20px #ff0000; }
+}
+
+.time-unit {
+    color: #888;
+    font-size: 1rem;
+}
+
+.timer-warning {
+    color: #ff9900;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    font-size: 0.9rem;
+}
+
+/* Terminal */
+.terminal {
+    background: rgba(0, 0, 0, 0.9);
+    border: 1px solid #00ff00;
+    border-radius: 5px;
+    margin-top: 25px;
+    overflow: hidden;
+}
+
+.terminal-header {
+    background: rgba(0, 255, 0, 0.2);
+    padding: 10px 15px;
+    color: #00ff00;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.terminal-content {
+    padding: 15px;
+    max-height: 200px;
+    overflow-y: auto;
+    font-size: 0.9rem;
+}
+
+.terminal-content p {
+    margin: 5px 0;
+    color: #00ff00;
+    animation: typewriter 0.1s steps(40) forwards;
+    opacity: 0;
+}
+
+.terminal-content p:nth-child(1) { animation-delay: 0.5s; }
+.terminal-content p:nth-child(2) { animation-delay: 1s; }
+.terminal-content p:nth-child(3) { animation-delay: 1.5s; }
+.terminal-content p:nth-child(4) { animation-delay: 2s; }
+.terminal-content p:nth-child(5) { animation-delay: 2.5s; }
+.terminal-content p:nth-child(6) { animation-delay: 3s; }
+.terminal-content p:nth-child(7) { animation-delay: 3.5s; }
+
+@keyframes typewriter {
+    to { opacity: 1; }
+}
+
+/* Footer */
+.footer {
+    margin-top: 25px;
+    text-align: center;
+    color: #666;
+    font-size: 0.8rem;
+}
+
+.footer-text {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+/* Restored Screen */
+.restored-screen {
+    background: rgba(0, 20, 0, 0.95);
+    border: 3px solid #00ff00;
+    border-radius: 15px;
+    padding: 40px;
+    text-align: center;
+    animation: fade-in 1s ease;
+}
+
+@keyframes fade-in {
+    from { opacity: 0; transform: scale(0.9); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+.restored-content {
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.success-icon {
+    font-size: 5rem;
+    color: #00ff00;
+    margin-bottom: 20px;
+    animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-20px); }
+}
+
+.success-title {
+    font-size: 3rem;
+    color: #ffffff;
+    margin-bottom: 15px;
+    text-shadow: 0 0 20px #00ff00;
+}
+
+.success-message {
+    font-size: 1.5rem;
+    color: #00ff00;
+    margin-bottom: 10px;
+}
+
+.success-sub {
+    color: #88ff88;
+    margin-bottom: 30px;
+}
+
+.closing-message {
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(0, 255, 0, 0.3);
+}
+
+.closing-timer {
+    font-size: 1.2rem;
+    color: #ff9900;
+    margin-top: 15px;
+}
+
+/* Efek untuk kode salah */
+body.wrong-code {
+    animation: shake 0.5s ease;
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    10%, 30%, 50%, 70%, 90% { transform: translateX(-10px); }
+    20%, 40%, 60%, 80% { transform: translateX(10px); }
+}
+
+/* Efek untuk waktu kritis */
+body.critical-time .timer .time {
+    animation: critical-pulse 0.5s infinite;
+}
+
+@keyframes critical-pulse {
+    0%, 100% { color: #ff0000; }
+    50% { color: #ffffff; }
+}
+
+/* Responsif untuk mobile */
+@media (max-width: 768px) {
+    .hack-screen {
+        padding: 20px;
+        margin: 10px;
+    }
+    
+    .glitch {
+        font-size: 1.5rem;
+    }
+    
+    .hack-message {
+        font-size: 1.4rem;
+    }
+    
+    .input-group {
+        flex-direction: column;
+    }
+    
+    .time {
+        font-size: 2.5rem;
+    }
+    
+    .phone-number {
+        font-size: 1.2rem;
+    }
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.3);
+}
+
+::-webkit-scrollbar-thumb {
+    background: #00ff00;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #00cc00;
+}
